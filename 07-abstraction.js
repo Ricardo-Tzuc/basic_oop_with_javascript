@@ -14,21 +14,27 @@
     objects (instances) that share the same properties 
     and functions and can be customized.
 */
+
+// PROTOTYPE: CLASS
 class Class {
     constructor({
         id,
         name,
+        professor
     }) {
         this.id = id
         this.name = name
+        this.professor = professor
     }
 }
-const classWebIntro1 = new Class({id:1, name: 'Class 1'})
-const classWebIntro2 = new Class({id:2, name: 'Class 2'})
-const classAIcourse1 = new Class({id:1, name: 'Class 1'})
-const classAIcourse2 = new Class({id:2, name: 'Class 2'})
+// Instances from Class
+const classWebIntro1 = new Class({id:1, name: 'Class 1', professor:'Diego De Granda'})
+const classWebIntro2 = new Class({id:2, name: 'Class 2', professor:'Diego De Granda'})
+const classAIcourse1 = new Class({id:1, name: 'Class 1', professor: 'Freddy Vega'})
+const classAIcourse2 = new Class({id:2, name: 'Class 2', professor: 'Freddy Vega'})
 
 
+// PROTOTYPE: COURSE
 class Course {
     constructor({
         name, 
@@ -38,15 +44,18 @@ class Course {
         this.classes = classes
     }
 }
-
+// Instances from Course
 const webIntroductionCourse = new Course({
-    name:'',
+    name:'Web Introduction Course',
     classes: [classWebIntro1, classWebIntro2],
 })
 const artificialIntelligenceCourse = new Course({
-    name:'',
+    name:'Artificial Intelligence Course',
     classes: [classAIcourse1, classAIcourse2],
 })
+
+
+// PROTOTYPE: LEARNING PATH
 class LearningPath {
     constructor ({
         routeName,
@@ -59,7 +68,7 @@ class LearningPath {
         this.courses = courses
     }
 }
-
+// Instances from Learning Path
 const webSchool = new LearningPath({routeName: 'Web School',
     id:'webSchool-001',
     courses:[webIntroductionCourse,
@@ -70,7 +79,6 @@ id:'dataScienceSchool-001',
 courses:[artificialIntelligenceCourse,
         'AI & ML Fundaments Course',
         'Guide to Start in Data Science Course']})
-
 const businessSchool = new LearningPath({
     routeName: 'Data Science School',
     id:'businessSchool-001',
@@ -79,6 +87,7 @@ const businessSchool = new LearningPath({
         'Business Model Course']})
 
 
+// PROTOTYPE: STUDENT
 class Student {
     constructor({
         name,
@@ -100,7 +109,7 @@ class Student {
         this.learningPaths = learningPaths
     }
 }
-
+// Instance from Student
 const juan1 = new Student({
     name: 'JuanDC',
     username: 'juandc',
@@ -109,3 +118,14 @@ const juan1 = new Student({
     learningPaths: [webSchool, dataSchool]
 })
 console.log(juan1.learningPaths[0].courses[0]);
+/*
+    Structure:
+       STUDENT: Student has learning paths...
+            LEARNING PATH: Learning path has courses...
+                COURSE: Course has classes..
+                    CLASS: Class has more properties that 
+                    comes from other properties.. 
+                    like professors that can comes from
+                    other prototype, or a extension 
+                    from a bigger prototype.
+*/
